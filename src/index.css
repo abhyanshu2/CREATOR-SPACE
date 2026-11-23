@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-primary: 255 79 163;
+  --c-secondary: 168 85 247;
+  --c-bg: 18 9 20;
+  --c-surface: 33 17 38;
+  --c-ink: 255 240 247;
+  --c-muted: 200 160 185;
+}
+:root[data-theme='light'] {
+  --c-bg: 255 244 250;
+  --c-surface: 255 255 255;
+  --c-ink: 60 20 45;
+  --c-muted: 130 85 110;
+}
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-bg text-ink font-body antialiased;
+  background-image:
+    radial-gradient(60rem 30rem at 85% -10%, rgb(var(--c-primary) / 0.18), transparent 60%),
+    radial-gradient(50rem 30rem at -10% 40%, rgb(var(--c-secondary) / 0.14), transparent 60%);
+  background-attachment: fixed;
+}
+@layer components {
+  .glow-card {
+    @apply rounded-3xl bg-surface/80 border border-primary/40 backdrop-blur;
+    box-shadow: 0 0 0 1px rgb(var(--c-primary) / 0.15), 0 0 28px rgb(var(--c-primary) / 0.22);
+  }
+  .btn-pink {
+    @apply inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-display font-semibold text-white transition hover:brightness-110 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+    box-shadow: 0 0 22px rgb(var(--c-primary) / 0.55);
+  }
+  .section-title { @apply font-display text-3xl sm:text-4xl font-semibold text-ink; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
